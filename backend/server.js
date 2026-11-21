@@ -8,6 +8,7 @@ const apiRoutes = require('./routes/api');
 const webhookRoutes = require('./routes/webhooks');
 
 const app = express();
+app.set('trust proxy', 1);
 app.disable('x-powered-by');
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({ origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',').map(x => x.trim()) : true }));
