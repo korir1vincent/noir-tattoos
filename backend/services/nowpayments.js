@@ -13,7 +13,7 @@ async function createInvoice({ amount, currency, orderId, description, successUr
     success_url: successUrl,
     cancel_url: cancelUrl,
     is_fixed_rate: true
-  }, { headers: { 'x-api-key': process.env.NOWPAYMENTS_API_KEY, 'Content-Type': 'application/json' } });
+  }, { headers: { 'x-api-key': process.env.NOWPAYMENTS_API_KEY, 'Content-Type': 'application/json' }, timeout: 15000 });
   return response.data;
 }
 module.exports = { createInvoice };

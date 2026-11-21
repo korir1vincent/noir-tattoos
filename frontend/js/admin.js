@@ -6,7 +6,7 @@ let token = localStorage.getItem('noir_admin_token');
 // BACKEND API CONFIGURATION
 // ==========================================
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = '/api';
 
 // ==========================================
 // AUTHENTICATION

@@ -19,7 +19,7 @@ exports.createStandard = async (req, res) => {
       remainingBalance: Math.max(0, pack.estimatedPrice - pack.deposit),
       status: 'awaiting_deposit'
     });
-    await bookingNotice(booking, 'Your tattoo booking request was received', `Booking ${booking.reference} has been created. Deposit due: $${booking.depositAmount.toFixed(2)} USD. Complete payment to secure your appointment.`);
+    bookingNotice(booking, 'Your tattoo booking request was received', `Booking ${booking.reference} has been created. Deposit due: $${booking.depositAmount.toFixed(2)} USD. Complete payment to secure your appointment.`);
     res.status(201).json({ booking: { reference: booking.reference, depositAmount: booking.depositAmount, status: booking.status, id: booking._id } });
   } catch (e) { res.status(500).json({ message: e.message || 'Could not create booking.' }); }
 };
@@ -34,7 +34,7 @@ exports.createCustom = async (req, res) => {
       tattooStyle, size, placement, description, preferredDate: preferredDate || undefined,
       referenceImages: referenceImages.slice(0, 5), status: 'awaiting_review', paymentStatus: 'unpaid'
     });
-    await bookingNotice(booking, 'Your custom tattoo request was received', `Thank you. Your request ${booking.reference} is awaiting artist review. The studio will contact you with a quote.`);
+    bookingNotice(booking, 'Your custom tattoo request was received', `Thank you. Your request ${booking.reference} is awaiting artist review. The studio will contact you with a quote.`);
     res.status(201).json({ booking: { reference: booking.reference, status: booking.status } });
   } catch (e) { res.status(500).json({ message: e.message || 'Could not submit custom request.' }); }
 };
